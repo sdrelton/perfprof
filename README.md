@@ -124,6 +124,22 @@ The performance profile answers this question.
 For example, we see that on 90% of the test problems **alg2** is within a factor 4 of **alg1**
 so that, whilst **alg1** is more accurate, the difference between the two is not enormous.
 
+## Advanced: Fixing Tiny Relative Errors
+Computing relative errors during vector and matrix computations can often lead to values
+smaller than the unit roundoff, which can skew the performance profiles and give a misleading
+graph.
+In reference [2], the authors propose a method to "fix" this by modifying those
+relative errors less than the unit roundoff.
+The resulting graphs give a much fairer representation of the data.
+
+To use this in our code use the _ppfix_ argument along with _ppfixmin_ and _ppfixmax_,
+if you don't like the default values.
+For example:
+
+```python
+perfprof(data, linespecs=linespecs, legendnames=labels, thmax=10, ppfix=True, usetex=True)
+```
+
 ## References
 [1] 
     E. D. Dolan, and J. J. More,
